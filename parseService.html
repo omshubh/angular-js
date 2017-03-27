@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+<div ng-app="myApp" >
+<div ng-controller="timeOutCtrl">
+Remainder : {{result}}
+<br/><br/>
+Emp. Number : {{empnum}}
+<br/><br/>
+<button ng-click="modulus()">Find Result</button>
+</div>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('timeOutCtrl', function($scope,$parse) {
+    
+$scope.modulus = function(){
+	//$parse service is used to compile and execute math operation
+	var rem = $parse( '19 % 7');
+	
+	var getEmpNo = $parse('emp.num');
+	var empOne = {emp:{num:1111}};
+	var empTwo = {emp:{num:2222}};
+	$scope.result = rem();
+	$scope.empnum = getEmpNo(empTwo);
+};
+
+});
+</script>
+
+</body>
+</html>
