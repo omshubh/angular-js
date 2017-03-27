@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+<div ng-app="myApp" >
+<div ng-controller="timeOutCtrl">
+Text to display : {{text}}
+<br/><br/>
+<button ng-click="cancel()">Cancel Timeout</button>
+</div>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('timeOutCtrl', function($scope,$timeout) {
+    var promise = $timeout(function(){
+		$scope.text="Text Appeared after 4 second";
+	},4000);
+$scope.cancel = function(){
+	$timeout.cancel(promise);
+};
+
+});
+</script>
+
+</body>
+</html>
